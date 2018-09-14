@@ -33,12 +33,10 @@ const reallocateMergedCells = (cells, rowOrCol, index, amount) => {
     const isBeforeExpanded = spanEnd <= index
     const isAffected =    isBeforeIndex && expanded && !isBeforeExpanded
 
-    if (!isADeletion(amount)) {
-      if (isAffected) {
-        return { 
-          ...cell, 
-          [getSpanKey(rowOrCol)]: getSpan(cell, rowOrCol) + amount 
-        }
+    if (!isADeletion(amount) && isAffected) {
+      return { 
+        ...cell, 
+        [getSpanKey(rowOrCol)]: getSpan(cell, rowOrCol) + amount 
       }
 
       return cell
